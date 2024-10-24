@@ -1,0 +1,48 @@
+<!-- my_module/views/api_request_log_views.xml -->
+<odoo>
+    <record id="view_api_request_log_tree" model="ir.ui.view">
+        <field name="name">api.request.log.tree</field>
+        <field name="model">api.request.log</field>
+        <field name="arch" type="xml">
+            <tree string="API Request Logs">
+                <field name="name"/>
+                <field name="request_payload"/>
+                <field name="status"/>
+                <field name="response_message"/>
+                <field name="request_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_api_request_log_form" model="ir.ui.view">
+        <field name="name">api.request.log.form</field>
+        <field name="model">api.request.log</field>
+        <field name="arch" type="xml">
+            <form string="API Request Log">
+                <group>
+                    <field name="name"/>
+                    <field name="request_payload"/>
+                    <field name="status"/>
+                    <field name="response_message"/>
+                    <field name="request_date"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define an action for accessing the logs -->
+    <record id="action_api_request_log" model="ir.actions.act_window">
+        <field name="name">API Request Logs</field>
+        <field name="res_model">api.request.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                No API logs to display.
+            </p>
+        </field>
+    </record>
+
+    <!-- Add a menu item for the logs -->
+    <menuitem id="menu_api_request_log_root" name="API Logs" parent="base.menu_custom" sequence="1"/>
+    <menuitem id="menu_api_request_log" name="API Request Logs" parent="menu_api_request_log_root" action="action_api_request_log"/>
+</odoo>
